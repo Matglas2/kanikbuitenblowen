@@ -37,11 +37,12 @@ body {
 }
 
 .title {
-  font-size: clamp(2rem, 7.5vw, 3rem);
+  font-size: clamp(1.5rem, 6.4vw, 2.6rem);
   font-weight: 800;
   margin: 8px 0 16px;
   color: var(--green);
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 /* ---------- Animated smoking blunt ---------- */
