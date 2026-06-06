@@ -1,0 +1,196 @@
+:root {
+  --green: #1f6b3b;
+  --green-light: #2e8b57;
+  --yes: #2e8b57;
+  --no: #c0392b;
+  --maybe: #d68910;
+  --ink: #1c2521;
+  --paper: #f4f1e8;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 50% 0%, #dff3e4 0%, #cfe9d6 45%, #bfe0c8 100%);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  width: 100%;
+  max-width: 540px;
+  padding: 32px 22px 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  font-weight: 800;
+  margin: 8px 0 16px;
+  color: var(--green);
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Animated smoking blunt ---------- */
+.blunt-stage {
+  position: relative;
+  width: 100%;
+  max-width: 210px;
+  margin: 4px auto 18px;
+  aspect-ratio: 300 / 460;
+}
+
+.blunt {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.18));
+}
+
+/* glowing ember pulse */
+.ember {
+  animation: glow 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+.ember-core {
+  animation: glow 1.6s ease-in-out infinite;
+}
+@keyframes glow {
+  0%, 100% { opacity: 0.75; filter: brightness(1); }
+  50%      { opacity: 1;    filter: brightness(1.4); }
+}
+
+/* smoke puffs rising from the ember */
+.smoke {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 0;
+  pointer-events: none;
+}
+.puff {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  background: rgba(190, 190, 190, 0.6);
+  border-radius: 50%;
+  filter: blur(4px);
+  opacity: 0;
+  animation: rise 4.5s ease-in infinite;
+}
+.puff2 { animation-delay: 0.9s; width: 22px; height: 22px; }
+.puff3 { animation-delay: 1.8s; width: 16px; height: 16px; }
+.puff4 { animation-delay: 2.7s; width: 24px; height: 24px; }
+.puff5 { animation-delay: 3.6s; width: 20px; height: 20px; }
+
+@keyframes rise {
+  0%   { transform: translateY(0) translateX(0) scale(0.4); opacity: 0; }
+  15%  { opacity: 0.65; }
+  60%  { opacity: 0.4; }
+  100% { transform: translateY(-110px) translateX(14px) scale(1.5); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ember, .ember-core, .puff { animation: none; }
+  .ember { opacity: 1; }
+}
+
+/* ---------- Verdict ---------- */
+.verdict-line {
+  font-size: 1.05rem;
+  margin: 0 0 6px;
+  color: #3a4a42;
+}
+
+.answer {
+  font-size: clamp(3.5rem, 18vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 4px 0 10px;
+  transition: color 0.3s ease;
+}
+.answer--loading { color: #9bb0a4; font-size: 2.5rem; }
+.answer--yes   { color: var(--yes); }
+.answer--no    { color: var(--no); }
+.answer--maybe { color: var(--maybe); }
+
+.reason {
+  font-size: 1.1rem;
+  margin: 0 0 24px;
+  min-height: 1.4em;
+  color: #28332d;
+  max-width: 24em;
+}
+
+/* ---------- Details ---------- */
+.details {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 20px;
+}
+.detail {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 14px;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.detail-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5a6b62;
+}
+.detail-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.retry {
+  appearance: none;
+  border: none;
+  background: var(--green);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+.retry:hover { background: var(--green-light); }
+
+.footer {
+  font-size: 0.8rem;
+  color: #54635b;
+  margin-top: auto;
+  padding-top: 16px;
+  line-height: 1.5;
+}
+.footer a { color: var(--green); }
