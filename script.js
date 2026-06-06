@@ -29,15 +29,15 @@ function showError(msg) {
 // Beslislogica op basis van wind en regen
 function decide(windKmh, rainMm) {
   if (rainMm >= REGEN_NEE) {
-    return ["NEE", "no", "Het regent — je blunt wordt drijfnat. Blijf lekker binnen."];
+    return ["NEE", "no", "Het regent, je blunt wordt drijfnat. Blijf lekker binnen."];
   }
   if (windKmh >= WIND_NEE) {
-    return ["NEE", "no", "Veel te veel wind (" + Math.round(windKmh) + " km/u) — die krijg je niet aan."];
+    return ["NEE", "no", "Veel te veel wind (" + Math.round(windKmh) + " km/u), die krijg je niet aan."];
   }
   if (windKmh >= WIND_MISSCHIEN) {
     return ["MISSCHIEN", "maybe", "Het waait flink (" + Math.round(windKmh) + " km/u). Zoek een luwe plek en bescherm de vlam."];
   }
-  return ["JA", "yes", "Droog en weinig wind — perfect weer om buiten te blowen."];
+  return ["JA", "yes", "Droog en weinig wind, perfect weer om buiten te blowen."];
 }
 
 async function reverseGeocode(lat, lon) {
@@ -106,7 +106,7 @@ function start() {
     (pos) => run(pos.coords.latitude, pos.coords.longitude),
     () => {
       // Geweigerd of mislukt: val terug op Amsterdam
-      setAnswer("…", "loading", "Geen locatie — we gebruiken Amsterdam.");
+      setAnswer("…", "loading", "Geen locatie, we gebruiken Amsterdam.");
       run(52.37, 4.90);
     },
     { timeout: 10000, maximumAge: 600000 }
